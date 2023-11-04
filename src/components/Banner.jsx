@@ -33,7 +33,7 @@ const Banner = () => {
                 <div className="h-[500px] lg:h-[750px] ">
                     <img src="https://i.ibb.co/vwpF3VF/image-4.png" className="w-full h-full object-cover" />
                     <div className="absolute w-full top-1/2 text-center -translate-y-1/2 z-20 px-4">
-                        <h1 className="text-4xl md:text-5xl lg:text-6xl text-white font-medium">Pizza Perfection Slice into Delight</h1>
+                        <h1 className="text-4xl md:text-5xl lg:text-6xl text-white font-medium">Slice into Delight</h1>
                         <p className="text-white max-w-2xl mx-auto mt-4">Experience the magic of pizza done right. Our artisanal pies are crafted with the finest ingredients and cooked to crispy, cheesy perfection. Unleash your cravings and savor the essence of authentic pizza bliss</p>
                         <div className="relative max-w-fit mx-auto mt-10">
                             <span className="w-full h-full absolute border-4 border-red-100 -right-2 -bottom-2 z-0"></span>
