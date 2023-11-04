@@ -7,30 +7,30 @@ const NavBar = () => {
             to={`/`}
             className={({ isActive }) =>
                 isActive
-                    ? "text-[#E32F22] transition-all lg:pb-1"
-                    : "transition-all ease-in-out"
+                    ? "text-[#E32F22] transition-all lg:pb-[2px]"
+                    : "transition-all ease-in-out text-[#9a9a9a]"
             }
         >
             Home
         </NavLink>
-        <span className="h-5 w-[1px] bg-black"></span>
+        <span className="h-1 w-1 rounded-full bg-black"></span>
         <NavLink
             to={`/allFoods`}
             className={({ isActive }) =>
                 isActive
-                    ? "text-[#E32F22] transition-all lg:pb-1"
-                    : "transition-all ease-in-out"
+                    ? "text-[#E32F22] transition-all lg:pb-[2px]"
+                    : "transition-all ease-in-out text-[#9a9a9a]"
             }
         >
             All Foods
         </NavLink>
-        <span className="h-5 w-[1px] bg-black"></span>
+        <span className="h-1 w-1 rounded-full bg-black"></span>
         <NavLink
             to={`/blog`}
             className={({ isActive }) =>
                 isActive
-                    ? "text-[#E32F22] transition-all lg:pb-1"
-                    : "transition-all ease-in-out"
+                    ? "text-[#E32F22] transition-all lg:pb-[2px]"
+                    : "transition-all ease-in-out text-[#9a9a9a]"
             }
         >
             Blog
@@ -63,14 +63,14 @@ const NavBar = () => {
                         <img src="https://i.ibb.co/0nf0pL8/unnamed-removebg1-preview.png" alt="Logo" className="w-20 lg:w-24 p-4 lg:p-2 bg-slate-100 rounded-xl" />
                         <div>
                             <h1 className="lobster-font text-[#E32F22] font-bold text-xl lg:text-3xl py-0 my-0">Al-Amal</h1>
-                            <span className="text-sm lg:text-base font-bold text-gray-500">Restaurant</span>
+                            <span className="text-sm lg:text-base font-bold text-gray-500 tracking-[3px]">Restaurant</span>
                         </div>
                     </Link>
 
                 </div>
                 <div className="navbar-end flex gap-8">
                     <div className=" hidden lg:flex">
-                        <ul className="flex items-end gap-4 text-xl font-bold">
+                        <ul className="flex items-center gap-4 text-lg font-bold">
                             {navLinks}
                         </ul>
                     </div>
