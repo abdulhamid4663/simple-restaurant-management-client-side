@@ -1,7 +1,12 @@
+import FoodItem from "../components/FoodItem";
 import Aside from "../components/aside";
+import useFoods from "../hooks/useFoods";
 
 
 const AllFood = () => {
+    const { data } = useFoods();
+
+
     return (
         <div>
             <div className="h-[320px] relative mb-[120px]">
@@ -14,6 +19,13 @@ const AllFood = () => {
                 <div className="grid grid-cols-4 gap-6">
                     <div className="col-span-1">
                         <Aside />
+                    </div>
+                    <div className="col-span-3">
+                        <div className="grid grid-cols-3 gap-6">
+                            {
+                                data?.data?.map(foodItem => <FoodItem key={foodItem._id} foodItem={foodItem} />)
+                            }
+                        </div>
                     </div>
                 </div>
             </div>
