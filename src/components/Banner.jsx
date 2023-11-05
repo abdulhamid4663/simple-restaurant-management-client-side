@@ -1,6 +1,7 @@
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
+import { Link } from "react-router-dom";
 
 const Banner = () => {
     const settings = {
@@ -25,7 +26,9 @@ const Banner = () => {
                         <p className="text-white max-w-xl mx-auto mt-4">Bite into perfection. Our burgers redefine culinary bliss, delivering taste and quality that&apos;s simply unparalleled</p>
                         <div className="relative max-w-fit mx-auto mt-10">
                             <span className="w-full h-full absolute border-4 border-red-100 -right-2 -bottom-2 z-0"></span>
-                            <button className="py-2 px-8 lg:py-3 lg:px-14 bg-red-100 text-xl lg:text-2xl font-semibold text-[#E32F22] lobster-font relative">Menu</button>
+                            <Link to="/allFoods">
+                                <button className="py-2 px-8 lg:py-3 lg:px-14 bg-red-100 text-xl lg:text-2xl font-semibold text-[#E32F22] lobster-font relative">Menu</button>
+                            </Link>
                         </div>
                     </div>
 
@@ -37,7 +40,9 @@ const Banner = () => {
                         <p className="text-white max-w-2xl mx-auto mt-4">Experience the magic of pizza done right. Our artisanal pies are crafted with the finest ingredients and cooked to crispy, cheesy perfection. Unleash your cravings and savor the essence of authentic pizza bliss</p>
                         <div className="relative max-w-fit mx-auto mt-10">
                             <span className="w-full h-full absolute border-4 border-red-100 -right-2 -bottom-2 z-0"></span>
-                            <button className="py-2 px-8 lg:py-3 lg:px-14 bg-red-100 text-xl lg:text-2xl font-semibold text-[#E32F22] lobster-font relative">Menu</button>
+                            <Link to="/allFoods">
+                                <button className="py-2 px-8 lg:py-3 lg:px-14 bg-red-100 text-xl lg:text-2xl font-semibold text-[#E32F22] lobster-font relative">Menu</button>
+                            </Link>
                         </div>
                     </div>
                 </div>
@@ -48,7 +53,9 @@ const Banner = () => {
                         <p className="text-white max-w-2xl mx-auto mt-4">Experience the pinnacle of burger artistry. Our gourmet burgers are meticulously created to satisfy the most discerning palates, embodying the essence of culinary excellence</p>
                         <div className="relative max-w-fit mx-auto mt-10">
                             <span className="w-full h-full absolute border-4 border-red-100 -right-2 -bottom-2 z-0"></span>
-                            <button className="py-2 px-8 lg:py-3 lg:px-14 bg-red-100 text-xl lg:text-2xl font-semibold text-[#E32F22] lobster-font relative">Menu</button>
+                            <Link to="/allFoods">
+                                <button className="py-2 px-8 lg:py-3 lg:px-14 bg-red-100 text-xl lg:text-2xl font-semibold text-[#E32F22] lobster-font relative">Menu</button>
+                            </Link>
                         </div>
                     </div>
                 </div>
