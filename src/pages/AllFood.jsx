@@ -1,10 +1,28 @@
+import { useEffect, useState } from "react";
 import FoodItem from "../components/FoodItem";
 import Aside from "../components/aside";
 import useFoods from "../hooks/useFoods";
+import useAxios from "../hooks/useAxios";
 
 
 const AllFood = () => {
     const { data } = useFoods();
+    const axios = useAxios();
+    const [foodItems, setFoodItems] = useState(null)
+    const [filteredFoods, setFilteredFoods] = useState(null)
+
+    useEffect(() => {
+        axios.get(`/foods?category=${foodItems}`)
+        .then(res => {
+            setFilteredFoods(res.data)
+            console.log(res.data);
+        })
+        
+    }, [foodItems, axios])
+
+    const handleCategories = category => {
+        setFoodItems(category)
+    }
 
 
     return (
@@ -18,12 +36,23 @@ const AllFood = () => {
             <div className="container mx-auto px-4 my-[120px]">
                 <div className="grid grid-cols-4 gap-6">
                     <div className="col-span-1">
-                        <Aside />
+                        <Aside handleCategories={handleCategories} />
                     </div>
                     <div className="col-span-3">
                         <div className="grid grid-cols-3 gap-6">
                             {
-                                data?.data?.map(foodItem => <FoodItem key={foodItem._id} foodItem={foodItem} />)
+                                foodItems ? <>
+                                    {
+                                        filteredFoods?.map(foodItem => <FoodItem key={foodItem._id} foodItem={foodItem} />)
+                                    }
+                                </>
+                                    :
+                                    <>
+                                        {
+                                            data?.data?.map(foodItem => <FoodItem key={foodItem._id} foodItem={foodItem} />)
+                                        }
+                                    </>
+
                             }
                         </div>
                     </div>
