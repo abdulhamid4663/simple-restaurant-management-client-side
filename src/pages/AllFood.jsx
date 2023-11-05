@@ -10,7 +10,7 @@ const AllFood = () => {
                     <h1 className="text-5xl font-medium text-white uppercase border-b-4 pb-2 border-white">All Foods</h1>
                 </div>
             </div>
-            <div className="container mx-auto px-4">
+            <div className="container mx-auto px-4 my-[120px]">
                 <div className="grid grid-cols-4 gap-6">
                     <div className="col-span-1">
                         <Aside />

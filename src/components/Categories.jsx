@@ -1,23 +1,12 @@
-import useAxios from "../hooks/useAxios";
-import { useQuery } from "@tanstack/react-query";
 import Category from "./Category";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
+import useCategories from "../hooks/useCategories";
 
 
 const Categories = () => {
-    const axios = useAxios();
-
-    const { data, isLoading, isError } = useQuery({
-        queryKey: ['category'],
-        queryFn: async () => {
-            const res = await axios.get('/categories')
-            return res
-        }
-    })
-
-    console.log(data?.data);
+    const { data } = useCategories();
 
     const settings = {
         className: "center",
