@@ -1,7 +1,8 @@
 import { useParams } from "react-router-dom";
 import useAxios from "../hooks/useAxios";
 import { useEffect, useState } from "react";
-
+import { toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 const OrderPage = () => {
     const { id } = useParams()
@@ -16,6 +17,36 @@ const OrderPage = () => {
             })
     }, [axios, id])
 
+    const handleSubmit = e => {
+        e.preventDefault();
+        const form = e.target;
+        const foodName = form.foodName.value; 
+        const itemPrice = form.price.value; 
+        const foodQuantity = form.quantity.value; 
+        const userName = form.userName.value; 
+        const email = form.email.value;
+        const date = form.date.value;
+
+        const foodQuantityInt = Number.parseInt(foodQuantity);
+
+        if(foodQuantityInt > quantity) {
+            toast.error(`Sorry, There are only ${quantity} items are available.`)
+            return;
+        }
+
+        const totalPrice = price * foodQuantityInt;
+
+        const orderedFood = {
+            foodName,
+            itemPrice,
+            quantity: foodQuantity,
+            userName,
+            email,
+            date,
+            totalPrice
+        };
+
+    }
 
     return (
         <div>
@@ -36,7 +67,7 @@ const OrderPage = () => {
                             </div>
                         </div>
                         <div className="lg:col-span-3">
-                            <form className="card-body">
+                            <form onSubmit={handleSubmit} className="card-body">
                                 <div className="form-control">
                                     <label className="label">
                                         <span className="label-text">Food Name:</span>

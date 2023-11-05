@@ -76,7 +76,9 @@ const NavBar = () => {
                     </div>
                     <div className="relative">
                         <span className="w-full h-full absolute border-4 border-red-100 -right-2 -bottom-2 z-0"></span>
-                        <button className="py-2 px-8 lg:py-3 lg:px-14 bg-red-100 text-xl lg:text-2xl font-semibold text-[#E32F22] lobster-font relative z-10">Login</button>
+                        <Link to="/login" >
+                            <button className="py-2 px-8 lg:py-3 lg:px-14 bg-red-100 text-xl lg:text-2xl font-semibold text-[#E32F22] lobster-font relative z-10">Login</button>
+                        </Link>
                     </div>
                 </div>
             </div>
