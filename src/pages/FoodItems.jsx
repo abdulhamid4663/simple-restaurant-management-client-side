@@ -1,9 +1,12 @@
+import { useParams } from "react-router-dom";
 
 
 const FoodItems = () => {
+    const { category } = useParams()
+
     return (
-        <div className="">
-            <h1>Food Items</h1>
+        <div className="container mx-auto px-4">
+            <h1>{category}</h1>
         </div>
     );
 };

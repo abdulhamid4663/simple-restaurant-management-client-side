@@ -2,7 +2,7 @@
 
 const AllFood = () => {
     return (
-        <div>
+        <div className="container mx-auto px-4">
             <h1>AllFood</h1>
         </div>
     );
