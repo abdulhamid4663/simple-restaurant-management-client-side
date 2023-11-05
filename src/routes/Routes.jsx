@@ -5,6 +5,7 @@ import AllFood from "../pages/AllFood";
 import Blog from "../pages/Blog";
 import FoodItems from "../pages/FoodItems";
 import FoodDetails from "../pages/FoodDetails";
+import OrderPage from "../pages/OrderPage";
 
 const router = createBrowserRouter([
     {
@@ -33,7 +34,7 @@ const router = createBrowserRouter([
             },
             {
                 path: "allFoods/:category/:name/:id",
-                element: <FoodDetails />
+                element: <OrderPage />
             },
         ] 
     }
