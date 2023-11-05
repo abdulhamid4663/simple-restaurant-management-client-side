@@ -3,12 +3,14 @@ import useAxios from "../hooks/useAxios";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import useAuth from "../hooks/useAuth";
 
 const OrderPage = () => {
     const { id } = useParams()
     const axios = useAxios();
     const [foodItem, setFoodItem] = useState({})
     const { name, image, price, quantity } = foodItem;
+    const { user } = useAuth();
 
     useEffect(() => {
         axios.get(`/foods/${id}`)
@@ -20,16 +22,16 @@ const OrderPage = () => {
     const handleSubmit = e => {
         e.preventDefault();
         const form = e.target;
-        const foodName = form.foodName.value; 
-        const itemPrice = form.price.value; 
-        const foodQuantity = form.quantity.value; 
-        const userName = form.userName.value; 
+        const foodName = form.foodName.value;
+        const itemPrice = form.price.value;
+        const foodQuantity = form.quantity.value;
+        const userName = form.userName.value;
         const email = form.email.value;
         const date = form.date.value;
 
         const foodQuantityInt = Number.parseInt(foodQuantity);
 
-        if(foodQuantityInt > quantity) {
+        if (foodQuantityInt > quantity) {
             toast.error(`Sorry, There are only ${quantity} items are available.`)
             return;
         }
@@ -93,13 +95,13 @@ const OrderPage = () => {
                                     <label className="label">
                                         <span className="label-text">Your Name:</span>
                                     </label>
-                                    <input type="text" name="userName" disabled placeholder="Buyer Name" className="pl-6" required />
+                                    <input type="text" name="userName" disabled defaultValue={user?.displayName} placeholder="Buyer Name" className="pl-6" required />
                                 </div>
                                 <div className="form-control">
                                     <label className="label">
                                         <span className="label-text">Your Email:</span>
                                     </label>
-                                    <input type="email" name="email" disabled placeholder="email" className="pl-6" required />
+                                    <input type="email" name="email" disabled defaultValue={user?.email} placeholder="email" className="pl-6" required />
                                 </div>
                                 <div className="form-control">
                                     <label className="label">

@@ -4,25 +4,44 @@ import { IoIosLock, IoMdMail } from "react-icons/io";
 import { Link } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import { toast } from "react-toastify";
+import useAxios from "../hooks/useAxios";
 
 
 const Register = () => {
-    const { createUser, userUpdateProfile } = useAuth();
+    const { createUser, userUpdateProfile, googleLogin } = useAuth();
+    const axios = useAxios();
 
     const handleSubmit = e => {
         e.preventDefault();
         const form = e.target;
         const name = form.name.value;
         const email = form.email.value;
-        const photoUrl = form.photoUrl.value;
+        const photoURL = form.photoUrl.value;
         const password = form.password.value;
+
+        const user = {
+            name,
+            email,
+            photoURL,
+            password
+        }
 
         createUser(email, password)
             .then(() => {
                 toast.success("User is Created Successfully")
-                userUpdateProfile(name, photoUrl)
+                userUpdateProfile(name, photoURL)
                     .then(() => {
                         toast.success('User is Updated Successfully');
+
+
+                        axios.post("/users", user)
+                            .then(res => {
+                                console.log(res.data);
+                            })
+                            .catch(error => {
+                                console.error(error)
+                            })
+
                     })
             })
             .catch(error => {
@@ -30,11 +49,21 @@ const Register = () => {
             })
     }
 
+    const handleGoogleLogin = () => {
+        googleLogin()
+            .then(() => {
+                toast.success('User Logged in Successfully');
+            })
+            .catch(error => {
+                toast.error(error.message);
+            })
+    }
+
     return (
-        <div className="h-[800px] items-center justify-center relative">
+        <div className="h-[820px] items-center justify-center relative">
             <img src="https://i.ibb.co/8drjmGb/55028613-fast-food-seamless-pattern-hand-drawn-food-background-background-template-for-your-design-v.jpg" alt="" className="w-full h-full object-cover opacity-10 absolute" />
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full">
-                <div className="hidden lg:flex max-w-3xl mx-auto my-[120px]">
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full py-[120px]">
+                <div className="hidden lg:flex max-w-3xl mx-auto">
                     <div className="grid flex-grow card place-items-center">
                         <form onSubmit={handleSubmit} className="card-body w-full">
                             <div className="form-control">
@@ -89,16 +118,16 @@ const Register = () => {
                     </div>
                     <div className="divider divider-horizontal">OR</div>
                     <div className="grid flex-grow items-start">
-                        <button className="btn rounded-none flex gap-3 items-center bg-base-300 justify-center py-3">
+                        <button onClick={handleGoogleLogin} className="btn rounded-none flex gap-3 items-center bg-base-300 justify-center py-3">
                             <GrGoogle />
                             Login with Google
                         </button>
                     </div>
                 </div>
                 {/* Mobile Login Form */}
-                <div className="max-w-3xl mx-auto lg:hidden my-[120px]">
+                <div className="max-w-3xl mx-auto lg:hidden">
                     <div className="grid flex-grow items-start p-8">
-                        <button className="btn rounded-none flex gap-3 items-center bg-base-300 justify-center py-3">
+                        <button onClick={handleGoogleLogin} className="btn rounded-none flex gap-3 items-center bg-base-300 justify-center py-3">
                             <GrGoogle />
                             Login with Google
                         </button>
