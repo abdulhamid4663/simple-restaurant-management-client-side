@@ -27,12 +27,14 @@ const Categories = () => {
         slidesToShow: 3,
         speed: 500,
         arrows: true,
+        autoplay: true,
+        autoplaySpeed: 5000,
     };
 
     return (
         <div className="container mx-auto px-4 my-[120px]">
-            <h1 className="text-[#E32F22] lobster-font text-6xl text-center">Savor the Variety</h1>
-            <p className="text-center max-w-lg mx-auto text-[#9A9A9A] font-medium mt-4">Explore a diverse culinary journey with our extensive menu, offering something for everyone</p>
+            <h1 className="text-[#E32F22] lobster-font text-4xl md:text-5xl lg:text-6xl text-center">Savor the Variety</h1>
+            <p className="text-center max-w-lg mx-auto text-[#9A9A9A] text-sm md:text-base font-medium mt-4">Explore a diverse culinary journey with our extensive menu, offering something for everyone</p>
             <div className="mt-[50px]">
                 <Slider {...settings}>
                     {
