@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 
 const auth = getAuth(app);
 
-const AuthContext = createContext(null);
+export const AuthContext = createContext(null);
 
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null)

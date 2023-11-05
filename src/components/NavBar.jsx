@@ -1,7 +1,11 @@
 import { Link, NavLink } from "react-router-dom";
 import './NavBar.css'
+import useAuth from "../hooks/useAuth";
+import { toast } from "react-toastify";
 
 const NavBar = () => {
+    const { user, logoutUser } = useAuth()
+
     const navLinks = <>
         <NavLink
             to={`/`}
@@ -36,6 +40,16 @@ const NavBar = () => {
             Blog
         </NavLink>
     </>
+
+    const handleLogout = () => {
+        logoutUser()
+        .then(() => {
+            toast.success('User Logged Out Successfully')
+        })
+        .catch(error => {
+            toast.error(error.message)
+        })
+    }
 
     return (
         <div className="container mx-auto">
@@ -75,10 +89,33 @@ const NavBar = () => {
                         </ul>
                     </div>
                     <div className="relative">
-                        <span className="w-full h-full absolute border-4 border-red-100 -right-2 -bottom-2 z-0"></span>
-                        <Link to="/login" >
-                            <button className="py-2 px-8 lg:py-3 lg:px-14 bg-red-100 text-xl lg:text-2xl font-semibold text-[#E32F22] lobster-font relative z-10">Login</button>
-                        </Link>
+                        {
+                            user ?
+                                <div className="dropdown dropdown-end">
+                                    <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+                                        <div className="w-10 rounded-full">
+                                            <img src={user?.photoURL} />
+                                        </div>
+                                    </label>
+                                    <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+                                        <li>
+                                            <a>
+                                                My added food items
+                                            </a>
+                                        </li>
+                                        <li><a>Add a food item</a></li>
+                                        <li><a>My orders</a></li>
+                                        <li><a onClick={handleLogout}>Logout</a></li>
+                                    </ul>
+                                </div>
+                                :
+                                <>
+                                    <span className="w-full h-full absolute border-4 border-red-100 -right-2 -bottom-2 z-0"></span>
+                                    <Link to="/login" >
+                                        <button className="py-2 px-8 lg:py-3 lg:px-14 bg-red-100 text-xl lg:text-2xl font-semibold text-[#E32F22] lobster-font relative z-10">Login</button>
+                                    </Link>
+                                </>
+                        }
                     </div>
                 </div>
             </div>

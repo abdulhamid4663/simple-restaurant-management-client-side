@@ -2,12 +2,32 @@ import { BsCardImage, BsFillPersonFill } from "react-icons/bs";
 import { GrGoogle } from "react-icons/gr";
 import { IoIosLock, IoMdMail } from "react-icons/io";
 import { Link } from "react-router-dom";
+import useAuth from "../hooks/useAuth";
+import { toast } from "react-toastify";
 
 
 const Register = () => {
+    const { createUser, userUpdateProfile } = useAuth();
 
     const handleSubmit = e => {
         e.preventDefault();
+        const form = e.target;
+        const name = form.name.value;
+        const email = form.email.value;
+        const photoUrl = form.photoUrl.value;
+        const password = form.password.value;
+
+        createUser(email, password)
+            .then(() => {
+                toast.success("User is Created Successfully")
+                userUpdateProfile(name, photoUrl)
+                    .then(() => {
+                        toast.success('User is Updated Successfully');
+                    })
+            })
+            .catch(error => {
+                toast.error(error.message)
+            })
     }
 
     return (
@@ -25,7 +45,7 @@ const Register = () => {
                                     <div className="w-14 h-14 bg-base-200 flex items-center justify-center">
                                         <BsFillPersonFill className="text-2xl" />
                                     </div>
-                                    <input type="text" name="email" placeholder="ex: John Doe" className="w-full border-2 py-3 px-5 focus:outline-none active:outline-none" required />
+                                    <input type="text" name="name" placeholder="ex: John Doe" className="w-full border-2 py-3 px-5 focus:outline-none active:outline-none" required />
                                 </div>
                             </div>
                             <div className="form-control">
@@ -47,7 +67,7 @@ const Register = () => {
                                     <div className="w-14 h-14 bg-base-200 flex items-center justify-center">
                                         <BsCardImage className="text-2xl" />
                                     </div>
-                                    <input type="text" name="Photo Url" placeholder="ex: john-doe.png" className="w-full border-2 py-3 px-5 focus:outline-none active:outline-none" required />
+                                    <input type="text" name="photoUrl" placeholder="ex: john-doe.png" className="w-full border-2 py-3 px-5 focus:outline-none active:outline-none" required />
                                 </div>
                             </div>
                             <div className="form-control">
@@ -93,7 +113,7 @@ const Register = () => {
                                 <div className="w-14 h-14 bg-base-200 flex items-center justify-center">
                                     <BsFillPersonFill className="text-2xl" />
                                 </div>
-                                <input type="text" name="email" placeholder="ex: John Doe" className="w-full border-2 py-3 px-5 focus:outline-none active:outline-none" required />
+                                <input type="text" name="name" placeholder="ex: John Doe" className="w-full border-2 py-3 px-5 focus:outline-none active:outline-none" required />
                             </div>
                         </div>
                         <div className="form-control">
@@ -115,7 +135,7 @@ const Register = () => {
                                 <div className="w-14 h-14 bg-base-200 flex items-center justify-center">
                                     <BsCardImage className="text-2xl" />
                                 </div>
-                                <input type="text" name="Photo Url" placeholder="ex: john-doe.png" className="w-full border-2 py-3 px-5 focus:outline-none active:outline-none" required />
+                                <input type="text" name="photoUrl" placeholder="ex: john-doe.png" className="w-full border-2 py-3 px-5 focus:outline-none active:outline-none" required />
                             </div>
                         </div>
                         <div className="form-control">

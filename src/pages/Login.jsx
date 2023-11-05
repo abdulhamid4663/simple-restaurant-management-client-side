@@ -1,11 +1,25 @@
 import { IoIosLock, IoMdMail } from "react-icons/io";
 import { GrGoogle } from "react-icons/gr";
 import { Link } from "react-router-dom";
+import useAuth from "../hooks/useAuth";
+import { toast } from "react-toastify";
 
 const Login = () => {
+    const { loginUser } = useAuth()
 
     const handleSubmit = e => {
         e.preventDefault();
+        const form = e.target;
+        const email = form.email.value;
+        const password = form.password.value;
+
+        loginUser(email, password)
+            .then(() => {
+                toast.success("User Logged in Successfully")
+            })
+            .catch(error => {
+                toast.error(error.message)
+            })
     }
 
 
