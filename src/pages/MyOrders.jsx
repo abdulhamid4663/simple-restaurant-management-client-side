@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import useAxios from "../hooks/useAxios";
-import OrderCard from "../components/OrderCard";
 import { toast } from "react-toastify";
+import MyOrdersCard from "../components/MyOrdersCard";
 
 const MyOrders = () => {
     const axios = useAxios();
@@ -39,7 +39,7 @@ const MyOrders = () => {
             <div className="container mx-auto px-4 my-[120px]">
                 <div className="grid grid-cols-1  gap-6">
                     {
-                        orders.map(order => <OrderCard key={order._id} order={order} handleCancel={handleCancel} />)
+                        orders.map(order => <MyOrdersCard key={order._id} order={order} handleCancel={handleCancel} />)
                     }
                 </div>
             </div>

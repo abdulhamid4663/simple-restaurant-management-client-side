@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-const OrderCard = ({ order, handleCancel }) => {
+const MyOrdersCard = ({ order, handleCancel }) => {
     const { _id, foodName, image, itemPrice, quantity, date, totalPrice } = order;
 
     return (
@@ -24,9 +24,9 @@ const OrderCard = ({ order, handleCancel }) => {
     );
 };
 
-OrderCard.propTypes = {
+MyOrdersCard.propTypes = {
     order: PropTypes.object,
     handleCancel: PropTypes.func,
 }
 
-export default OrderCard;
+export default MyOrdersCard;
