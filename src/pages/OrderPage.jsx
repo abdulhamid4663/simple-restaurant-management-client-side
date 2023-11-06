@@ -42,11 +42,22 @@ const OrderPage = () => {
             foodName,
             itemPrice,
             quantity: foodQuantity,
+            totalPrice,
             userName,
             email,
             date,
-            totalPrice
         };
+
+        axios.post("/orders", orderedFood)
+            .then(res => {
+                console.log(res.data);
+                if(res.data.insertedId){
+                    toast.success("Your food has been ordered successfully");
+                }
+            })
+            .catch(error => {
+                toast.error(error.message)
+            })
 
     }
 

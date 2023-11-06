@@ -44,7 +44,7 @@ const AuthProvider = ({ children }) => {
             console.log(currentUser);
             setLoading(false);
 
-            if (currentUser.email) {
+            if (currentUser?.email) {
                 axios.post("/jwt", email)
                     .then(res => {
                         console.log(res.data);
