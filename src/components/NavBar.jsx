@@ -43,12 +43,12 @@ const NavBar = () => {
 
     const handleLogout = () => {
         logoutUser()
-        .then(() => {
-            toast.success('User Logged Out Successfully')
-        })
-        .catch(error => {
-            toast.error(error.message)
-        })
+            .then(() => {
+                toast.success('User Logged Out Successfully')
+            })
+            .catch(error => {
+                toast.error(error.message)
+            })
     }
 
     return (
@@ -95,7 +95,7 @@ const NavBar = () => {
                                                 My added food items
                                             </Link>
                                         </li>
-                                        <li><Link className="cursor-pointer">Add a food item</Link></li>
+                                        <li><Link to="/addFood" className="cursor-pointer">Add a food item</Link></li>
                                         <li><Link to="/myOrders" className="cursor-pointer">My orders</Link></li>
                                         <li><a className="cursor-pointer" onClick={handleLogout}>Logout</a></li>
                                     </ul>
@@ -104,7 +104,9 @@ const NavBar = () => {
                                 <>
                                     <span className="w-full h-full absolute border-4 border-red-100 -right-2 -bottom-2 z-0"></span>
                                     <Link to="/login" >
-                                        <button className="py-2 px-8 lg:py-3 lg:px-14 bg-red-100 text-xl lg:text-2xl font-semibold text-[#E32F22] lobster-font relative z-10">Login</button>
+                                        <button className="py-2 px-8 lg:py-3 lg:px-14 bg-red-100 text-xl lg:text-2xl font-semibold text-[#E32F22] lobster-font relative z-10">
+                                            Login
+                                        </button>
                                     </Link>
                                 </>
                         }

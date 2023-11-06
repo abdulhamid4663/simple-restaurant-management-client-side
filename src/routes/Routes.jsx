@@ -9,6 +9,7 @@ import OrderPage from "../pages/OrderPage";
 import Login from "../pages/Login";
 import Register from "../pages/register";
 import MyOrders from "../pages/MyOrders";
+import AddFood from "../pages/AddFood";
 
 const router = createBrowserRouter([
     {
@@ -50,8 +51,11 @@ const router = createBrowserRouter([
             {
                 path: "myOrders",
                 element: <MyOrders />
-            }
-
+            },
+            {
+                path: "addFood",
+                element: <AddFood />
+            },
         ] 
     }
 ])
