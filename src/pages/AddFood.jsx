@@ -8,21 +8,21 @@ import { BiDollar } from "react-icons/bi";
 import { BsGlobeAmericas } from "react-icons/bs";
 import { MdFastfood } from "react-icons/md";
 import useAuth from "../hooks/useAuth";
-
+import { toast } from "react-toastify";
 
 const AddFood = () => {
-    const [addedPhoto, setAddedPhoto] = useState('')
-    const [optionValue, setOptionValue] = useState('')
+    const [addedPhoto, setAddedPhoto] = useState('');
+    const [optionValue, setOptionValue] = useState('');
     const axios = useAxios();
     const { user } = useAuth();
 
     const handlePhotoUrl = (e) => {
         setAddedPhoto(e.target.value)
-    }
+    };
 
     const handleOptions = e => {
         setOptionValue(e.target.value)
-    }
+    };
 
     const { data } = useQuery({
         queryKey: ['category'],
@@ -30,7 +30,47 @@ const AddFood = () => {
             const res = await axios.get("/categories")
             return res;
         }
-    })
+    });
+
+    const handleSubmit = e => {
+        e.preventDefault();
+        const form = e.target;
+        const name = form.name.value;
+        const category = optionValue;
+        const image = form.image.value;
+        const price = form.price.value;
+        const madeBy = form.madeBy.value;
+        const origin = form.origin.value;
+        const ingredients = form.ingredients.value;
+        const procedure = form.procedure.value;
+        const quantity = form.quantity.value;
+
+        const ingredientsArray = ingredients.split(",")
+
+        const addedFood = {
+            name,
+            category,
+            image,
+            price,
+            madeBy,
+            origin,
+            ingredients: ingredientsArray,
+            procedure,
+            quantity,
+        }
+
+        axios.post("/foods", addedFood)
+            .then(res => {
+                console.log(res.data);
+                if (res.data.insertedId) {
+                    toast.success("Your food has been added successfully");
+                }
+            })
+            .catch(error => {
+                toast.error(error.message)
+            })
+
+    };
 
     return (
         <div>
@@ -41,7 +81,7 @@ const AddFood = () => {
                 </div>
             </div>
             <div className="my-[120px]">
-                <form className="card-body max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <form onSubmit={handleSubmit} className="card-body max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6">
                     <div>
                         <div className="h-[250px] lg:h-[350px] border">
                             {
@@ -97,7 +137,7 @@ const AddFood = () => {
                                 <div className="w-14 h-14 bg-base-200 flex items-center justify-center">
                                     <HiOutlineInboxIn className="text-2xl" />
                                 </div>
-                                <input type="email" name="quantity" placeholder="ex: 10" className="w-full border-2 py-3 px-5 focus:outline-none active:outline-none" required />
+                                <input type="text" name="quantity" placeholder="ex: 10" className="w-full border-2 py-3 px-5 focus:outline-none active:outline-none" required />
                             </div>
                         </div>
                         <div className="form-control">
@@ -108,7 +148,7 @@ const AddFood = () => {
                                 <div className="w-14 h-14 bg-base-200 flex items-center justify-center">
                                     <BiDollar className="text-2xl" />
                                 </div>
-                                <input type="email" name="price" placeholder="ex: $14.64" className="w-full border-2 py-3 px-5 focus:outline-none active:outline-none" required />
+                                <input type="text" name="price" placeholder="ex: $14.64" className="w-full border-2 py-3 px-5 focus:outline-none active:outline-none" required />
                             </div>
                         </div>
                         <div className="form-control">
@@ -141,14 +181,14 @@ const AddFood = () => {
                                 <div className="w-14 h-14 bg-base-200 flex items-center justify-center">
                                     <MdFastfood className="text-2xl" />
                                 </div>
-                                <input type="text" name="origin" placeholder="ex: tomato, potato, lemon" className="w-full border-2 py-3 px-5 focus:outline-none active:outline-none" required />
+                                <input type="text" name="ingredients" placeholder="ex: tomato,potato,lemon" className="w-full border-2 py-3 px-5 focus:outline-none active:outline-none" required />
                             </div>
                         </div>
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text">Procedure:</span>
                             </label>
-                            <textarea className="textarea border" placeholder="ex: tomato mixed with garlic."></textarea>
+                            <textarea className="textarea border" name="procedure" placeholder="ex: tomato mixed with garlic." required></textarea>
                         </div>
                         <div className="form-control mt-6">
                             <button type="submit" className="btn bg-base-300 rounded-none">Add</button>
