@@ -91,12 +91,12 @@ const NavBar = () => {
                                     </label>
                                     <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
                                         <li>
-                                            <a className="cursor-pointer">
+                                            <Link className="cursor-pointer">
                                                 My added food items
-                                            </a>
+                                            </Link>
                                         </li>
-                                        <li><a className="cursor-pointer">Add a food item</a></li>
-                                        <li><a className="cursor-pointer">My orders</a></li>
+                                        <li><Link className="cursor-pointer">Add a food item</Link></li>
+                                        <li><Link to="/myOrders" className="cursor-pointer">My orders</Link></li>
                                         <li><a className="cursor-pointer" onClick={handleLogout}>Logout</a></li>
                                     </ul>
                                 </div>

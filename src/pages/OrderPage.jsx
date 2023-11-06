@@ -40,6 +40,7 @@ const OrderPage = () => {
 
         const orderedFood = {
             foodName,
+            image,
             itemPrice,
             quantity: foodQuantity,
             totalPrice,
