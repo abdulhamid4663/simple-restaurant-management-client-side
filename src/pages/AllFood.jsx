@@ -1,29 +1,29 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import FoodItem from "../components/FoodItem";
 import Aside from "../components/aside";
-import useFoods from "../hooks/useFoods";
 import useAxios from "../hooks/useAxios";
+import { useQuery } from "@tanstack/react-query";
 
 
 const AllFood = () => {
-    const { data } = useFoods();
     const axios = useAxios();
-    const [foodItems, setFoodItems] = useState(null)
-    const [filteredFoods, setFilteredFoods] = useState(null)
+    const [foodCategory, setFoodCategory] = useState("")
 
-    useEffect(() => {
-        axios.get(`/foods?category=${foodItems}`)
-        .then(res => {
-            setFilteredFoods(res.data)
-            console.log(res.data);
-        })
-        
-    }, [foodItems, axios])
-
-    const handleCategories = category => {
-        setFoodItems(category)
+    const getFoods = async () => {
+        const res = await axios.get(`/foods?category=${foodCategory}`)
+        return res
     }
 
+    const { data: foods, isLoading } = useQuery({
+        queryKey: ["food", foodCategory],
+        queryFn: getFoods
+    })
+
+    const handleCategories = category => {
+        setFoodCategory(category)
+    }
+
+    console.log(foods);
 
     return (
         <div>
@@ -39,22 +39,18 @@ const AllFood = () => {
                         <Aside handleCategories={handleCategories} />
                     </div>
                     <div className="col-span-3">
-                        <div className="grid grid-cols-3 gap-6">
-                            {
-                                foodItems ? <>
+                        {
+                            isLoading ?
+                                <div className="h-[200px] flex items-center justify-center">
+                                    <span className="loading loading-spinner loading-lg"></span>
+                                </div>
+                                :
+                                <div className="grid grid-cols-3 gap-6">
                                     {
-                                        filteredFoods?.map(foodItem => <FoodItem key={foodItem._id} foodItem={foodItem} />)
+                                        foods?.data?.map(foodItem => <FoodItem key={foodItem._id} foodItem={foodItem} />)
                                     }
-                                </>
-                                    :
-                                    <>
-                                        {
-                                            data?.data?.map(foodItem => <FoodItem key={foodItem._id} foodItem={foodItem} />)
-                                        }
-                                    </>
-
-                            }
-                        </div>
+                                </div>
+                        }
                     </div>
                 </div>
             </div>

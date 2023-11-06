@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 
-const OrderCard = ({ order }) => {
-    const { foodName, image, itemPrice, quantity, date, totalPrice } = order;
+const OrderCard = ({ order, handleCancel }) => {
+    const { _id, foodName, image, itemPrice, quantity, date, totalPrice } = order;
 
     return (
         <div className="w-full">
@@ -16,7 +16,7 @@ const OrderCard = ({ order }) => {
                     <h2 className='text-base md:text-lg font-medium flex-grow'>Quantity: {quantity}</h2>
                     <div className="card-actions justify-between items-center">
                         <h2 className='flex-grow text-xl md:text-2xl text-[#E32F22]'>Total Price: ${totalPrice}</h2>
-                        <button className="btn btn-error text-white">Cancel</button>
+                        <button onClick={() => handleCancel(_id)} className="btn btn-error text-white">Cancel</button>
                     </div>
                 </div>
             </div>
@@ -26,6 +26,7 @@ const OrderCard = ({ order }) => {
 
 OrderCard.propTypes = {
     order: PropTypes.object,
+    handleCancel: PropTypes.func,
 }
 
 export default OrderCard;

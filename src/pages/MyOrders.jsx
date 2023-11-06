@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
 import useAxios from "../hooks/useAxios";
 import OrderCard from "../components/OrderCard";
-
+import { toast } from "react-toastify";
 
 const MyOrders = () => {
     const axios = useAxios();
     const [orders, setOrders] = useState([]);
-
 
     useEffect(() => {
         axios.get('/orders')
@@ -15,7 +14,20 @@ const MyOrders = () => {
             })
     }, [axios])
 
-    console.log(orders);
+    const handleCancel = (id) => {
+        axios.delete(`/orders/${id}`)
+            .then(res => {
+                if (res.data.deletedCount) {
+                    const remaining = orders.filter(order => order._id !== id)
+                    setOrders(remaining)
+                    toast.success("Your Order has been Cancelled Successfully");
+                }
+            })
+            .catch(error => {
+                toast.error(error.message)
+            });
+    };
+
     return (
         <div>
             <div className="h-[220px] md:h-[320px] relative mb-[120px]">
@@ -27,7 +39,7 @@ const MyOrders = () => {
             <div className="container mx-auto px-4 my-[120px]">
                 <div className="grid grid-cols-1  gap-6">
                     {
-                        orders.map(order => <OrderCard key={order._id} order={order} />)
+                        orders.map(order => <OrderCard key={order._id} order={order} handleCancel={handleCancel} />)
                     }
                 </div>
             </div>
