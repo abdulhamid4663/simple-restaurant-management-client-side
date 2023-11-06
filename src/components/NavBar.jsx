@@ -17,7 +17,7 @@ const NavBar = () => {
         >
             Home
         </NavLink>
-        <span className="h-1 w-1 rounded-full bg-black"></span>
+        <span className="h-1 w-1 rounded-full bg-black hidden lg:inline-block"></span>
         <NavLink
             to={`/allFoods`}
             className={({ isActive }) =>
@@ -28,7 +28,7 @@ const NavBar = () => {
         >
             All Foods
         </NavLink>
-        <span className="h-1 w-1 rounded-full bg-black"></span>
+        <span className="h-1 w-1 rounded-full bg-black hidden lg:inline-block"></span>
         <NavLink
             to={`/blog`}
             className={({ isActive }) =>
@@ -61,15 +61,7 @@ const NavBar = () => {
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
                         </label>
                         <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-                            <li><a>Item 1</a></li>
-                            <li>
-                                <a>Parent</a>
-                                <ul className="p-2">
-                                    <li><a>Submenu 1</a></li>
-                                    <li><a>Submenu 2</a></li>
-                                </ul>
-                            </li>
-                            <li><a>Item 3</a></li>
+                            {navLinks}
                         </ul>
                     </div>
 
@@ -99,13 +91,13 @@ const NavBar = () => {
                                     </label>
                                     <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
                                         <li>
-                                            <a>
+                                            <a className="cursor-pointer">
                                                 My added food items
                                             </a>
                                         </li>
-                                        <li><a>Add a food item</a></li>
-                                        <li><a>My orders</a></li>
-                                        <li><a onClick={handleLogout}>Logout</a></li>
+                                        <li><a className="cursor-pointer">Add a food item</a></li>
+                                        <li><a className="cursor-pointer">My orders</a></li>
+                                        <li><a className="cursor-pointer" onClick={handleLogout}>Logout</a></li>
                                     </ul>
                                 </div>
                                 :
