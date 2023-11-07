@@ -11,7 +11,7 @@ const MyAddedFoods = () => {
     const { data, isLoading, isError, error, refetch } = useQuery({
         queryKey: ['food'],
         queryFn: async () => {
-            const res = await axios.get(`/foods?email=${user?.email}`)
+            const res = await axios.get(`/allFoods?email=${user?.email}`)
             return res;
         }
     });

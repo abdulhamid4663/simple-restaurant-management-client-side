@@ -42,6 +42,7 @@ const AllFood = () => {
         setFoodCategory(category)
         setCountFoods(foods?.data?.length)
         setCurrentPage(0)
+        setSearchValue('')
     }
 
     if (isError) {
@@ -57,7 +58,6 @@ const AllFood = () => {
 
     const handleFilter = e => {
         setFilterValue(e.target.value)
-        setCurrentPage(0)
     }
 
     return (
