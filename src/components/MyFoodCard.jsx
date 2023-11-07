@@ -3,6 +3,7 @@ import { BiSolidTrashAlt } from "react-icons/bi";
 import { PiGearFineBold } from "react-icons/pi";
 import useAxios from '../hooks/useAxios';
 import { toast } from "react-toastify";
+import { Link } from 'react-router-dom';
 
 const MyFoodCard = ({ myFood, refetch }) => {
     const { _id, name, image, category, price, quantity, ingredients, procedure } = myFood;
@@ -39,7 +40,9 @@ const MyFoodCard = ({ myFood, refetch }) => {
                     <h2 className='text-base md:text-lg font-medium flex-grow'>Quantity: <span className='text-[#E32F22]'>{quantity}</span></h2>
                     <h2 className='text-base md:text-lg font-medium flex-grow'>Procedure: <span className='text-slate-400'>{procedure}</span></h2>
                     <div className="card-actions justify-end items-center mt-4 lg:mt-0">
-                        <button className="btn btn-primary text-white"><PiGearFineBold className='text-xl' /> Update</button>
+                        <Link to={`/myFoods/${_id}`}>
+                            <button className="btn btn-primary text-white"><PiGearFineBold className='text-xl' /> Update</button>
+                        </Link>
                         <button onClick={handleDeleteFood} className="btn btn-error text-white"><BiSolidTrashAlt className='text-xl' /> Delete</button>
                     </div>
                 </div>

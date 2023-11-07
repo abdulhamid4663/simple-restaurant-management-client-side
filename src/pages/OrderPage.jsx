@@ -9,7 +9,7 @@ const OrderPage = () => {
     const { id } = useParams()
     const axios = useAxios();
     const [foodItem, setFoodItem] = useState({})
-    const { name, image, price, quantity } = foodItem;
+    const { name, image, price, quantity, madeBy } = foodItem;
     const { user } = useAuth();
 
     useEffect(() => {
@@ -30,6 +30,11 @@ const OrderPage = () => {
         const date = form.date.value;
 
         const foodQuantityInt = Number.parseInt(foodQuantity);
+
+        if(email === madeBy) {
+            toast.error(`Sorry, You can't order your own item.`)
+            return;
+        }
 
         if (foodQuantityInt > quantity) {
             toast.error(`Sorry, There are only ${quantity} items are available.`)
