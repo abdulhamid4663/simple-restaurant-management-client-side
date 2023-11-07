@@ -2,20 +2,22 @@ import { useQuery } from "@tanstack/react-query";
 import useAuth from "../hooks/useAuth";
 import useAxios from "../hooks/useAxios";
 import MyFoodCard from "../components/MyFoodCard";
+import { toast } from "react-toastify";
 
 const MyAddedFoods = () => {
     const { user } = useAuth();
     const axios = useAxios();
 
-    const { data, isLoading, refetch } = useQuery({
+    const { data, isLoading, isError, error, refetch } = useQuery({
         queryKey: ['food'],
         queryFn: async () => {
-            const res = axios.get(`/foods?user=${user?.displayName}`)
+            const res = await axios.get(`/foods?email=${user?.email}`)
             return res;
         }
     });
 
-    if (isLoading) {
+    if(isError) {
+        toast.error(error)
         return;
     }
 
@@ -29,11 +31,18 @@ const MyAddedFoods = () => {
             </div>
             <div className="container mx-auto px-4 my-[120px]">
                 <div className="w-full">
-                    <div className="grid grid-cols-1  gap-6">
-                        {
-                            data?.data?.map(foodItem => <MyFoodCard key={foodItem._id} myFood={foodItem} refetch={refetch} />)
-                        }
-                    </div>
+                    {
+                        isLoading ?
+                            <div className="h-[200px] flex items-center justify-center">
+                                <span className="loading loading-spinner loading-lg"></span>
+                            </div>
+                            :
+                            <div className="grid grid-cols-1 gap-6">
+                                {
+                                    data?.data?.map(foodItem => <MyFoodCard key={foodItem._id} myFood={foodItem} refetch={refetch} />)
+                                }
+                            </div>
+                    }
                 </div>
             </div>
         </div>

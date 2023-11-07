@@ -11,14 +11,9 @@ const MyFoodCard = ({ myFood, refetch }) => {
     const handleDeleteFood = () => {
         axios.delete(`/foods/${_id}`)
             .then(res => {
-                // if (res.data.deletedCount) {
-                //     const remaining = data?..filter(order => order._id !== id)
-                //     setOrders(remaining)
-                //     toast.success("Your Order has been Cancelled Successfully");
-                // }
                 console.log(res.data);
                 toast.success("Your Order has been Cancelled Successfully");
-                refetch()
+                refetch();
             })
             .catch(error => {
                 toast.error(error.message)
@@ -37,11 +32,10 @@ const MyFoodCard = ({ myFood, refetch }) => {
                         Ingredients:
                         <span>
                             {
-                                ingredients.map((ingredient, index) => <strong key={index} className='text-slate-400'> {ingredient}, </strong>)
+                                ingredients?.map((ingredient, index) => <strong key={index} className='text-slate-400'> {ingredient}, </strong>)
                             }
                         </span>
                     </h3>
-
                     <h2 className='text-base md:text-lg font-medium flex-grow'>Quantity: <span className='text-[#E32F22]'>{quantity}</span></h2>
                     <h2 className='text-base md:text-lg font-medium flex-grow'>Procedure: <span className='text-slate-400'>{procedure}</span></h2>
                     <div className="card-actions justify-end items-center mt-4 lg:mt-0">

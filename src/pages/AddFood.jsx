@@ -1,12 +1,13 @@
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
-import { BsCardImage, BsFillPersonFill } from "react-icons/bs";
+import { BsCardImage } from "react-icons/bs";
 import { IoMdMail } from "react-icons/io";
 import useAxios from "../hooks/useAxios";
 import { HiOutlineInboxIn } from "react-icons/hi";
 import { BiDollar } from "react-icons/bi";
 import { BsGlobeAmericas } from "react-icons/bs";
 import { MdFastfood } from "react-icons/md";
+import { FaBowlFood } from "react-icons/fa6";
 import useAuth from "../hooks/useAuth";
 import { toast } from "react-toastify";
 
@@ -113,7 +114,7 @@ const AddFood = () => {
                             </label>
                             <div className="flex">
                                 <div className="w-14 h-14 bg-base-200 flex items-center justify-center">
-                                    <IoMdMail className="text-2xl" />
+                                    <FaBowlFood className="text-2xl" />
                                 </div>
                                 <input type="text" name="name" placeholder="ex: chicken-burger" className="w-full border-2 py-3 px-5 focus:outline-none active:outline-none" required />
                             </div>
@@ -153,13 +154,13 @@ const AddFood = () => {
                         </div>
                         <div className="form-control">
                             <label className="label">
-                                <span className="label-text">Your Name:</span>
+                                <span className="label-text">Your Email:</span>
                             </label>
                             <div className="flex">
                                 <div className="w-14 h-14 bg-base-200 flex items-center justify-center">
-                                    <BsFillPersonFill className="text-2xl" />
+                                    <IoMdMail className="text-2xl" />
                                 </div>
-                                <input type="text" name="madeBy" defaultValue={user ? user?.displayName : ""} disabled placeholder="ex: $14.64" className="w-full border-2 py-3 px-5 focus:outline-none active:outline-none" required />
+                                <input type="email" name="madeBy" defaultValue={user ? user?.email : ""} disabled placeholder="ex: example@email.com" className="w-full border-2 py-3 px-5 focus:outline-none active:outline-none" required />
                             </div>
                         </div>
                         <div className="form-control">
