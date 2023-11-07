@@ -1,17 +1,19 @@
 import Banner from "../components/Banner";
 import Categories from "../components/Categories";
 import Guide from "../components/Guide";
+import Newsletter from "../components/Newsletter";
 import TopFoods from "../components/TopFoods";
 
 
 const Home = () => {
     return (
         <div>
-            <div className="mb-[120px]">
+            <div>
                 <Banner />
                 <Categories />
                 <Guide />
                 <TopFoods />
+                <Newsletter />
             </div>
         </div>
     );
