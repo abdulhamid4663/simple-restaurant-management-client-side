@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import Category from "./Category";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -43,13 +44,6 @@ const Categories = () => {
         nextArrow: <SampleNextArrow />,
         prevArrow: <SamplePrevArrow />,
         responsive: [
-            // {
-            //   breakpoint: 1536,
-            //   settings: {
-            //     slidesToShow: 4,
-            //     swipeToSlide: true,
-            //   }
-            // },
             {
               breakpoint: 1280,
               settings: {

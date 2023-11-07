@@ -9,7 +9,7 @@ const OrderPage = () => {
     const { id } = useParams()
     const axios = useAxios();
     const [foodItem, setFoodItem] = useState({})
-    const { name, image, price, quantity, madeBy } = foodItem;
+    const { name, image, price, quantity, madeBy, count } = foodItem;
     const { user } = useAuth();
 
     useEffect(() => {
@@ -54,11 +54,24 @@ const OrderPage = () => {
             date,
         };
 
+        const orderCount = {
+            count: count + 1,
+        }
+
         axios.post("/orders", orderedFood)
             .then(res => {
                 console.log(res.data);
                 if(res.data.insertedId){
                     toast.success("Your food has been ordered successfully");
+                    
+                    axios.patch(`/foods/${id}`, orderCount)
+                    .then(() => {
+
+                    })
+                    .catch(error => {
+                        toast.error(error.message)
+                    })
+
                 }
             })
             .catch(error => {

@@ -1,6 +1,7 @@
 import Banner from "../components/Banner";
 import Categories from "../components/Categories";
 import Guide from "../components/Guide";
+import TopFoods from "../components/TopFoods";
 
 
 const Home = () => {
@@ -10,6 +11,7 @@ const Home = () => {
                 <Banner />
                 <Categories />
                 <Guide />
+                <TopFoods />
             </div>
         </div>
     );
