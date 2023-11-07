@@ -57,8 +57,8 @@ const Blog = () => {
                                     {/* row 1 */}
                                     <tr>
                                         <th>Data Model</th>
-                                        <td>Document-Oriented (NoSQL)</td>
-                                        <td>Relational (SQL)</td>
+                                        <td>NoSQL database</td>
+                                        <td>SQL database</td>
                                     </tr>
                                     {/* row 2 */}
                                     <tr>
@@ -69,14 +69,14 @@ const Blog = () => {
                                     {/* row 3 */}
                                     <tr>
                                         <th>Query Language</th>
-                                        <td>Rich Query Language (JSON-based)</td>
-                                        <td>SQL (Structured Query Language)</td>
+                                        <td>Rich Query Language</td>
+                                        <td>Structured Query Language</td>
                                     </tr>
                                     {/* row 4 */}
                                     <tr>
                                         <th>Scalability</th>
-                                        <td>Horizontal Scalability (Sharding)</td>
-                                        <td>Vertical Scalability (Add Resources)</td>
+                                        <td>Horizontal Scalability</td>
+                                        <td>Vertical Scalability</td>
                                     </tr>
                                     {/* row 5 */}
                                     <tr>
@@ -89,12 +89,6 @@ const Blog = () => {
                                         <th>Flexibility</th>
                                         <td>Well-suited for Unstructured Data</td>
                                         <td>Well-suited for Structured Data</td>
-                                    </tr>
-                                    {/* row 7 */}
-                                    <tr>
-                                        <th>Replication and Sharding</th>
-                                        <td>Native Support</td>
-                                        <td>Supported, but requires configuration</td>
                                     </tr>
                                 </tbody>
                             </table>
