@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import FoodItem from "../components/FoodItem";
 import useAxios from "../hooks/useAxios";
 import { useQuery } from "@tanstack/react-query";
@@ -12,19 +12,36 @@ const AllFood = () => {
     const [foodCategory, setFoodCategory] = useState("");
     const [searchValue, setSearchValue] = useState("");
     const [filterValue, setFilterValue] = useState("");
-
+    const [countFoods, setCountFoods] = useState(0)
+    const [currentPage, setCurrentPage] = useState(0);
+    const itemsPerPage = 9
+    const foodPages = Math.ceil(countFoods / itemsPerPage);
+    const pages = [...Array(foodPages).keys()];
+    
+    useEffect(() => {
+        axios.get('/foodsCount')
+        .then(res => {
+            setCountFoods(res.data.count)
+        })
+        .catch(error => {
+            console.log(error.message);
+        });
+    }, [axios]);
+    
     const getFoods = async () => {
-        const res = await axios.get(`/foods?category=${foodCategory}&search=${searchValue}&filter=${filterValue}`)
+        const res = await axios.get(`/foods?category=${foodCategory}&search=${searchValue}&filter=${filterValue}&page=${currentPage}`)
         return res
     }
-
+    
     const { data: foods, isLoading, isError, error } = useQuery({
-        queryKey: ["food", foodCategory, searchValue, filterValue],
+        queryKey: ["food", foodCategory, searchValue, filterValue, currentPage],
         queryFn: getFoods
     })
-
+    
     const handleCategories = category => {
         setFoodCategory(category)
+        setCountFoods(foods?.data?.length)
+        setCurrentPage(0)
     }
 
     if (isError) {
@@ -34,10 +51,13 @@ const AllFood = () => {
     const handleSearch = e => {
         e.preventDefault();
         setSearchValue(e.target.search.value)
+        setCountFoods(foods?.data?.length);
+        setCurrentPage(0)
     }
 
     const handleFilter = e => {
         setFilterValue(e.target.value)
+        setCurrentPage(0)
     }
 
     return (
@@ -81,19 +101,26 @@ const AllFood = () => {
                             </dir>
                         </div>
                     </div>
-                    <div className="lg:col-span-3">
+                    <div className="flex flex-col lg:col-span-3">
                         {
                             isLoading ?
                                 <div className="h-[200px] flex items-center justify-center">
                                     <span className="loading loading-spinner loading-lg"></span>
                                 </div>
                                 :
-                                <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
-                                    {
-                                        foods?.data?.map(foodItem => <FoodItem key={foodItem._id} foodItem={foodItem} />)
-                                    }
+                                <div className="flex-grow">
+                                    <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
+                                        {
+                                            foods?.data?.map(foodItem => <FoodItem key={foodItem._id} foodItem={foodItem} />)
+                                        }
+                                    </div>
                                 </div>
                         }
+                        <div className="flex justify-end gap-2 mt-8">
+                            {
+                                pages.map(page => <button onClick={() => setCurrentPage(page)} key={page} className="btn bg-red-100">{page + 1}</button>)
+                            }
+                        </div>
                     </div>
                 </div>
             </div>

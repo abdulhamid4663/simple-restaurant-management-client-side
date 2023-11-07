@@ -1,12 +1,14 @@
 import { IoIosLock, IoMdMail } from "react-icons/io";
 import { GrGoogle } from "react-icons/gr";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import { toast } from "react-toastify";
 
 const Login = () => {
     const { loginUser, googleLogin } = useAuth()
-
+    const location = useLocation()
+    const navigate = useNavigate();
+    
     const handleSubmit = e => {
         e.preventDefault();
         const form = e.target;
@@ -16,6 +18,7 @@ const Login = () => {
         loginUser(email, password)
             .then(() => {
                 toast.success("User Logged in Successfully")
+                navigate(location?.state ? location?.state : "/")
             })
             .catch(error => {
                 toast.error(error.message)
@@ -26,6 +29,7 @@ const Login = () => {
         googleLogin()
             .then(() => {
                 toast.success('User Logged in Successfully');
+                navigate(location?.state ? location?.state : "/")
             })
             .catch(error => {
                 toast.error(error.message);
