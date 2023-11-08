@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 
 const NavBar = () => {
     const { user, logoutUser } = useAuth()
-
+    
     const navLinks = <>
         <NavLink
             to={`/`}

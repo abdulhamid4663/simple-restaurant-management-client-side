@@ -10,6 +10,7 @@ import { MdFastfood } from "react-icons/md";
 import { FaBowlFood } from "react-icons/fa6";
 import useAuth from "../hooks/useAuth";
 import { toast } from "react-toastify";
+import { Helmet } from "react-helmet-async";
 
 const AddFood = () => {
     const [addedPhoto, setAddedPhoto] = useState('');
@@ -75,6 +76,9 @@ const AddFood = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>AL-AMAL || Add Food</title>
+            </Helmet>
             <div className="h-[220px] md:h-[320px] relative mb-[120px]">
                 <img src="https://i.ibb.co/3rSVL0q/image-6.png" alt="" className="w-full h-full object-cover" />
                 <div className="absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 w-full">

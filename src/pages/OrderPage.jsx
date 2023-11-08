@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import useAuth from "../hooks/useAuth";
+import { Helmet } from "react-helmet-async";
 
 const OrderPage = () => {
     const { id } = useParams()
@@ -82,6 +83,9 @@ const OrderPage = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>AL-AMAL || Order Food</title>
+            </Helmet>
             <div className="h-[220px] md:h-[320px] relative mb-[120px]">
                 <img src="https://i.ibb.co/3rSVL0q/image-6.png" alt="" className="w-full h-full object-cover" />
                 <div className="absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 w-full">

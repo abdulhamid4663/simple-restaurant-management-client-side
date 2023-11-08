@@ -5,6 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import useCategories from "../hooks/useCategories";
 import { IoIosCheckmarkCircle } from "react-icons/io";
+import { Helmet } from "react-helmet-async";
 
 const AllFood = () => {
     const axios = useAxios();
@@ -62,6 +63,9 @@ const AllFood = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>AL-AMAL || All Foods</title>
+            </Helmet>
             <div className="h-[320px] relative mb-[120px]">
                 <img src="https://i.ibb.co/3rSVL0q/image-6.png" alt="" className="w-full h-full object-cover" />
                 <div className="absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2">
