@@ -1,8 +1,11 @@
-# React + Vite
+Getting Started: 
+- my website name is Al-Amal 
+- i created this website based on restaurant management.
+- my website link is : https://amal-auth-b8696.web.app
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Top Five Main Features of my Website:
+- user can change the display of foods by clicking on the category name.
+- user can filter foods by the price high to low or low to high.
+- user can search a specific food my it's name.
+- user can check the foods that he/she added and update them.
+- User can register and log in through their email and password or through gmail.

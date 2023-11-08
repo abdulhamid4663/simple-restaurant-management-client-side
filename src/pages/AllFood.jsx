@@ -34,7 +34,7 @@ const AllFood = () => {
         return res
     }
     
-    const { data: foods, isLoading, isError, error } = useQuery({
+    const { data: foods, isFetching, isError, error } = useQuery({
         queryKey: ["food", foodCategory, searchValue, filterValue, currentPage],
         queryFn: getFoods
     })
@@ -107,7 +107,7 @@ const AllFood = () => {
                     </div>
                     <div className="flex flex-col lg:col-span-3">
                         {
-                            isLoading ?
+                            isFetching ?
                                 <div className="h-[200px] flex items-center justify-center">
                                     <span className="loading loading-spinner loading-lg"></span>
                                 </div>

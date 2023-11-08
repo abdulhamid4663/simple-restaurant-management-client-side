@@ -18,7 +18,7 @@ const UpdateFood = () => {
     const axios = useAxios();
     const { id } = useParams();
 
-    const { data, isLoading } = useQuery({
+    const { data, isFetching } = useQuery({
         queryKey: ['food'],
         queryFn: async () => {
             const res = await axios.get(`/foods/${id}`)
@@ -115,7 +115,7 @@ const UpdateFood = () => {
                                 <span className="label-text">Category:</span>
                             </label>
                             {
-                                isLoading ? ""
+                                isFetching ? ""
                                     :
                                     <select name="options" defaultValue={data?.data?.category} className="select rounded-none py-2 px-5 w-full bg-transparent">
                                         <option disabled>Pick one category</option>
