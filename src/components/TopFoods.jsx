@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 const TopFoods = () => {
     const axios = useAxios();
 
-    const { data, isLoading } = useQuery({
+    const { data, isFetching } = useQuery({
         queryKey: ["food"],
         queryFn: async () => {
             const res = await axios.get("/topFoods");
@@ -21,7 +21,7 @@ const TopFoods = () => {
             <p className="text-center max-w-lg mx-auto text-[#9A9A9A] text-sm md:text-base font-medium mt-4">Discover flavor artistry with our top menu picks. Beloved by countless food enthusiasts, find your new obsession today!</p>
             <div className="mt-[50px]">
                 {
-                    isLoading ?
+                    isFetching ?
                         <div className="h-[200px] flex items-center justify-center">
                             <span className="loading loading-spinner loading-lg"></span>
                         </div>

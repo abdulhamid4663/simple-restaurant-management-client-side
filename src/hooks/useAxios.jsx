@@ -9,22 +9,20 @@ const instance = axios.create({
 })
 
 const useAxios = () => {
-    const { logoutUser } = useAuth();
+    // const { logoutUser } = useAuth();
 
-    useEffect(() => {
-        axios.interceptors.response.use(function (response) {
-            return response;
-        }, function (error) {
-            if (error.response.status === 401 || error.response.status === 403) {
-                console.log("Dead");
-                logoutUser()
-                    .then(() => {
-                        toast.warning("Please login again")
-                    })
-            }
-        });
-    }, []);
-
+    // useEffect(() => {
+    //     axios.interceptors.response.use(function (response) {
+    //         return response;
+    //     }, function (error) {
+    //         if (error.response.status === 401 || error.response.status === 403) {
+    //             logoutUser()
+    //                 .then(() => {
+    //                     toast.warning("Please login again")
+    //                 })
+    //         }
+    //     });
+    // }, []);
 
     return instance
 };

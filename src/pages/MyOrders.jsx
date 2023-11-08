@@ -9,7 +9,7 @@ const MyOrders = () => {
     const axios = useAxios();
     const { user } = useAuth();
 
-    const { data, isLoading, isError, error, refetch } = useQuery({
+    const { data, isFetching, isError, error, refetch } = useQuery({
         queryKey: ['food'],
         queryFn: async () => {
             const res = await axios.get(`/orders?email=${user?.email}`)
@@ -19,6 +19,7 @@ const MyOrders = () => {
 
     if (isError) {
         toast.error(error)
+        return;
     }
 
     const handleCancel = (id) => {
@@ -47,7 +48,7 @@ const MyOrders = () => {
             </div>
             <div className="container mx-auto px-4 my-[120px]">
                 {
-                    isLoading ?
+                    isFetching ?
                         <div className="h-[200px] flex items-center justify-center">
                             <span className="loading loading-spinner loading-lg"></span>
                         </div>

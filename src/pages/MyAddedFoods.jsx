@@ -9,7 +9,7 @@ const MyAddedFoods = () => {
     const { user } = useAuth();
     const axios = useAxios();
 
-    const { data, isLoading, isError, error, refetch } = useQuery({
+    const { data, isFetching, isError, error, refetch } = useQuery({
         queryKey: ['food'],
         queryFn: async () => {
             const res = await axios.get(`/allFoods?email=${user?.email}`)
@@ -36,7 +36,7 @@ const MyAddedFoods = () => {
             <div className="container mx-auto px-4 my-[120px]">
                 <div className="w-full">
                     {
-                        isLoading ?
+                        isFetching ?
                             <div className="h-[200px] flex items-center justify-center">
                                 <span className="loading loading-spinner loading-lg"></span>
                             </div>
