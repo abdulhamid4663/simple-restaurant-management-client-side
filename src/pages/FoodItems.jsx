@@ -1,22 +1,21 @@
-import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import useAxios from "../hooks/useAxios";
 import FoodItem from "../components/FoodItem";
 import { Helmet } from "react-helmet-async";
+import { useQuery } from "@tanstack/react-query";
 
 
 const FoodItems = () => {
     const { category } = useParams()
     const axios = useAxios()
-    const [foods, setFoods] = useState([]) 
 
-    useEffect(() => {
-        axios.get(`/foods?category=${category}`)
-        .then(res => {
-            setFoods(res.data)
-        })
-        
-    }, [axios, category])
+    const { data, isFetching } = useQuery({
+        queryKey: ['food'],
+        queryFn: async () => {
+            const res = await axios.get(`/foods?category=${category}`)
+            return res;
+        }
+    })
 
     return (
         <div>
@@ -32,7 +31,12 @@ const FoodItems = () => {
             <div className="container mx-auto px-4 my-[120px]">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                     {
-                        foods?.map(foodItem => <FoodItem key={foodItem._id} foodItem={foodItem} />)
+                        isFetching ?
+                            <div className="h-[200px] flex items-center justify-center">
+                                <span className="loading loading-spinner loading-lg"></span>
+                            </div>
+                            :
+                            data?.data?.map(foodItem => <FoodItem key={foodItem._id} foodItem={foodItem} />)
                     }
                 </div>
             </div>

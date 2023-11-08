@@ -18,27 +18,27 @@ const AllFood = () => {
     const itemsPerPage = 9
     const foodPages = Math.ceil(countFoods / itemsPerPage);
     const pages = [...Array(foodPages).keys()];
-    
+
     useEffect(() => {
         axios.get('/foodsCount')
-        .then(res => {
-            setCountFoods(res.data.count)
-        })
-        .catch(error => {
-            console.log(error.message);
-        });
+            .then(res => {
+                setCountFoods(res.data.count)
+            })
+            .catch(error => {
+                console.log(error.message);
+            });
     }, [axios]);
-    
+
     const getFoods = async () => {
         const res = await axios.get(`/foods?category=${foodCategory}&search=${searchValue}&filter=${filterValue}&page=${currentPage}`)
         return res
     }
-    
+
     const { data: foods, isFetching, isError, error } = useQuery({
         queryKey: ["food", foodCategory, searchValue, filterValue, currentPage],
         queryFn: getFoods
     })
-    
+
     const handleCategories = category => {
         setFoodCategory(category)
         setCountFoods(foods?.data?.length)
@@ -91,7 +91,7 @@ const AllFood = () => {
                                 </select>
                             </div>
                             <h2 className="text-[30px] text-[#414549] font-medium">Categories</h2>
-                            <dir>
+                            <div>
                                 {
                                     data?.data?.map(category =>
                                         <div key={category._id} className="flex items-center gap-2">
@@ -102,7 +102,7 @@ const AllFood = () => {
                                         </div>
                                     )
                                 }
-                            </dir>
+                            </div>
                         </div>
                     </div>
                     <div className="flex flex-col lg:col-span-3">
@@ -122,7 +122,13 @@ const AllFood = () => {
                         }
                         <div className="flex justify-end gap-2 mt-8">
                             {
-                                pages.map(page => <button onClick={() => setCurrentPage(page)} key={page} className="btn bg-red-100">{page + 1}</button>)
+                                isFetching ? ""
+                                    :
+                                    <>
+                                        {
+                                            pages.map(page => <button onClick={() => setCurrentPage(page)} key={page} className="btn bg-red-100">{page + 1}</button>)
+                                        }
+                                    </>
                             }
                         </div>
                     </div>
