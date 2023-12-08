@@ -1,11 +1,9 @@
-Getting Started: 
-- my website name is Al-Amal 
-- i created this website based on restaurant management.
-- my website link is : https://leafy-platypus-545afd.netlify.app
 
-Top Five Main Features of my Website:
-- user can change the display of foods by clicking on the category name.
-- user can filter foods by the price high to low or low to high.
-- user can search a specific food my it's name.
-- user can check the foods that he/she added and update them.
-- User can register and log in through their email and password or through gmail.
+Key Features of this app:
+- Effortlessly customize food display by selecting category names.
+- Conveniently filter foods based on price, from high to low or low to high.
+- Streamline the search process with a user-friendly name search feature.
+- Manage and update selected foods with ease through a dedicated user interface.
+- Securely register and log in using email and password credentials or through Gmail authentication.
+
+Live Site: https://leafy-platypus-545afd.netlify.app
