@@ -1,7 +1,7 @@
 Getting Started: 
 - my website name is Al-Amal 
 - i created this website based on restaurant management.
-- my website link is : https://amal-auth-b8696.web.app
+- my website link is : https://leafy-platypus-545afd.netlify.app
 
 Top Five Main Features of my Website:
 - user can change the display of foods by clicking on the category name.
